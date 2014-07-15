@@ -96,8 +96,14 @@ class Card(pygame.sprite.Sprite):
         self.state = state
         self.update_image()
 
-def fill_texture_on_surface(surface, texture):
-    
+
+def fill_fullsurface(surface, texture):
+    d_size = surface.get_rect().size
+    t_size = texture.get_rect().size
+
+    for y in range(0, d_size[1], t_size[1]):
+        for x in range(0, d_size[0], t_size[0]):
+            surface.blit(texture, (x, y))
 
 def run():
     #create screen
@@ -106,7 +112,7 @@ def run():
 
     #load res
     font = res.load_font(FONT_NAME, FONT_SIZE, FONTS_FOLDER)
-    background_texture = res.load_image("back.bmp")
+    background_texture = res.load_image("back.png")[0]
 
     card_deck = CardDeck()
     card_deck.smart_locate_on_rect(screen.get_rect())
@@ -114,7 +120,12 @@ def run():
 
     sprites = pygame.sprite.Group(card_deck.cards)
 
-    background =
+    def create_background(size, tex):
+        b = pygame.Surface(size)
+        fill_fullsurface(b, background_texture)
+        return b
+
+    background = create_background(WINDOW_SIZE, background_texture)
 
     while 1:
         pressed_key = pygame.key.get_pressed()
@@ -138,7 +149,14 @@ def run():
                 screen = pygame.display.set_mode(event.size, RESIZABLE)
                 card_deck.smart_locate_on_rect(screen.get_rect())
 
-        screen.fill(TABLE_COLOR)
+                if not TABLE_COLOR:
+                    background = create_background(event.size, background_texture)
+
+        if TABLE_COLOR:
+            screen.fill(TABLE_COLOR)
+        else:
+            screen.blit(background, (0, 0))
+
         sprites.draw(screen)
 
         screen.blit(text, (2, 0))
