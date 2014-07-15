@@ -37,7 +37,7 @@ class CardDeck():
 
         for y, row in enumerate(self.cards):
             for x, c in enumerate(row):
-                c.rect.x = rect.x + x * card_size.width
+                c.rect.x = rect.x + x * c.rect.width
                 c.rect.x += rect.width / 2 - self.size.width * card_size.width / 2
 
                 c.rect.y = rect.y + y * card_size.height
@@ -83,7 +83,7 @@ class Card(pygame.sprite.Sprite):
         scale_size = (int(self.original_rect.width * scale_n), int(self.original_rect.height * scale_n))
 
         self.scaled_image = pygame.transform.smoothscale(self.original_image, scale_size)
-        self.rect = self.image.get_rect()
+        self.rect = self.scaled_image.get_rect()
 
         self.set_state(self.state)
 
@@ -131,7 +131,7 @@ def run():
                 text = font.render(TEXT_FOR_FORMAT.format(*card_deck.get_number_states()), 1, FONT_COLOR)
             elif event.type == VIDEORESIZE:
                 screen = pygame.display.set_mode(event.size, RESIZABLE)
-                card_deck.smart_locate_on_rect(screen.get_rect())
+                card_deck.smart_locate_on_rect(Rect(0, 0, screen.get_rect().size[0], screen.get_rect().size[1]))
 
         screen.fill(TABLE_COLOR)
         sprites.draw(screen)
