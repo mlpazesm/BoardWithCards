@@ -14,11 +14,11 @@ FPS = 10
 
 
 class CardDeck():
-    SUITS = ['clubs', 'diamonds', 'hearts', 'spades']
+    SUITS = {'clubs': 1, 'diamonds': 4, 'hearts': 3, 'spades': 2}
     NAME = ['7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
     def __init__(self):
-        self.cards = [[Card(x * 4 + y) for x in range(7, -1, -1)] for y in range(1, 5)]
+        self.cards = [[Card(x * 4 + y) for x in range(7, -1, -1)] for y in [CardDeck.SUITS[x] for x in ORDER_OF_SUIT]]
         self.size = Rect(0, 0, len(self.cards[0]), len(self.cards))
 
     def get_by_point(self, point):

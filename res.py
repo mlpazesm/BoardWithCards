@@ -17,5 +17,4 @@ def load_image(name, folder='.'):
 
 def load_font(name, size, folder='.'):
     fullname = os.path.join(folder, name)
-    print fullname
     return pygame.font.Font(fullname, size)
