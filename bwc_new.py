@@ -96,18 +96,25 @@ class Card(pygame.sprite.Sprite):
         self.state = state
         self.update_image()
 
+def fill_texture_on_surface(surface, texture):
+    
 
 def run():
+    #create screen
     pygame.init()
     screen = pygame.display.set_mode(WINDOW_SIZE, RESIZABLE)
 
+    #load res
     font = res.load_font(FONT_NAME, FONT_SIZE, FONTS_FOLDER)
+    background_texture = res.load_image("back.bmp")
 
     card_deck = CardDeck()
     card_deck.smart_locate_on_rect(screen.get_rect())
     text = font.render(TEXT_FOR_FORMAT.format(*card_deck.get_number_states()), 1, FONT_COLOR)
 
     sprites = pygame.sprite.Group(card_deck.cards)
+
+    background =
 
     while 1:
         pressed_key = pygame.key.get_pressed()
