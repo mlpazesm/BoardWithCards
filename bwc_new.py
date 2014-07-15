@@ -36,7 +36,7 @@ class CardDeck():
 
         for y, row in enumerate(self.cards):
             for x, c in enumerate(row):
-                c.rect.x = x * card_size.width + 6
+                c.rect.x = x * card_size.width
                 c.rect.x += rect.width / 2 - self.size.width * card_size.width / 2
 
                 c.rect.y = y * card_size.height
