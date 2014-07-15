@@ -10,8 +10,6 @@ from settings import *
 
 __author__ = 'fonter'
 
-FPS = 10
-
 
 class CardDeck():
     SUITS = {'clubs': 1, 'diamonds': 4, 'hearts': 3, 'spades': 2}
