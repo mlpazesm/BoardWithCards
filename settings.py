@@ -20,4 +20,4 @@ FONT_COLOR = (0xFF,) * 3
 TEXT_FOR_FORMAT = "Open: {1}, Close: {0}, Your: {2}" #1 - open size, 0 - close size, 3 - your size
 
 #cards
-ORDER_OF_SUIT = ('clubs', 'spades', 'diamonds', 'hearts')
+ORDER_OF_SUIT = ('spades', 'clubs', 'diamonds', 'hearts')

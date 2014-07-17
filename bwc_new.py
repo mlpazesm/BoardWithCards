@@ -134,7 +134,7 @@ def run():
                 return
             elif event.type == KEYDOWN and event.key == K_SPACE or event.type == MOUSEBUTTONDOWN and event.button == 2:
                 card_deck.all_set_states(Card.OPEN)
-                text = font.render("Open: {0}, Close: {1}, Your: {2}".format(*card_deck.get_number_states()), 1, FONT_COLOR)
+                text = font.render(TEXT_FOR_FORMAT.format(*card_deck.get_number_states()), 1, FONT_COLOR)
             elif event.type == MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 c = card_deck.get_by_point(pos)
