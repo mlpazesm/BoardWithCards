@@ -122,7 +122,7 @@ def run():
 
     def create_background(size, tex):
         b = pygame.Surface(size)
-        fill_fullsurface(b, background_texture)
+        fill_fullsurface(b, tex)
         return b
 
     background = create_background(WINDOW_SIZE, background_texture)
@@ -140,7 +140,7 @@ def run():
                 c = card_deck.get_by_point(pos)
                 if event.button == 1 and pressed_key[K_TAB] or event.button == 3:
                     if c:
-                        c.set_state(Card.YOUR)
+                        c.set_state(Card.YOUR if c.state != Card.YOUR else Card.OPEN)
                 elif event.button == 1:
                     if c:
                         c.set_state(Card.CLOSE if c.state != Card.CLOSE else Card.OPEN)
